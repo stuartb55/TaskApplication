@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class TaskController {
@@ -20,6 +21,12 @@ public class TaskController {
     @GetMapping("/task")
     public List<Task> getAll() {
         return taskData.getTasks();
+    }
+
+    @GetMapping("/task/{id}")
+    public Task getTask(@PathVariable String id){
+        long taskId = Long.parseLong(id);
+        return taskData.getTaskbyId(taskId);
     }
 
     @PostMapping("/task")
