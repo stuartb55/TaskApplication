@@ -18,6 +18,7 @@ public class Task {
 		this.description = description;
 		this.due = due;
 		this.important = important;
+		created = new Date();
 	}
 
 	public Long getId() {
@@ -56,8 +57,8 @@ public class Task {
 		return updated;
 	}
 
-	public void setUpdated(Date updated) {
-		this.updated = updated;
+	public void setUpdated() {
+		this.updated = new Date();
 	}
 
 	public Date getDue() {
