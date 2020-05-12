@@ -3,7 +3,7 @@ package com.example.restMongo;
 import java.util.Date;
 
 public class Task {
-	private Long id;
+	private long id;
 	private String subject;
 	private String description;
 	private Date created;
@@ -11,7 +11,9 @@ public class Task {
 	private Date due;
 	private boolean important;
 
-	public Task(String subject, String description, Date due, boolean important) {
+	public Task() { }
+
+	public Task(Long id, String subject, String description, Date due, boolean important) {
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
@@ -73,5 +75,18 @@ public class Task {
 	public void setImportant(boolean important) {
 		this.important = important;
 		updated = new Date();
+	}
+
+	@Override
+	public String toString() {
+		return "Task{" +
+                "id = " + id +
+                ", subject ='" + subject + '\'' +
+				", description ='" + description + '\'' +
+				", due ='" + due + '\'' +
+				", important ='" + important + '\'' +
+				", created ='" + created + '\'' +
+				", updated ='" + updated + '\'' +
+                '}';
 	}
 }
