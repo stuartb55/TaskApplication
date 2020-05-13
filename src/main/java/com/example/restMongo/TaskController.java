@@ -12,21 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class TaskController {
-    private TaskData taskData = new TaskData();
+    @Autowired
+    private TaskRepository repository;
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/task")
     public List<Task> getAll() {
-        return taskData.getTasks();
+        return repository.findAll();
     }
 
     @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
         long taskId = Long.parseLong(id);
-        return taskData.getTaskbyId(taskId);
+        return repository.findById(taskId).orElse(null);
     }
 
     @PostMapping("/task")
@@ -41,6 +43,6 @@ public class TaskController {
             due = null;
         }
         Boolean important = Boolean.parseBoolean(body.get("important"));
-        return taskData.createTask(id, subject, description, due, important);
+        return repository.save(new Task(id, subject, description, due, important));
     }
 }
