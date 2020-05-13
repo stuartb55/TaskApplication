@@ -6,6 +6,7 @@ import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TaskController {
     @Autowired
     private TaskRepository repository;
+
+    @DeleteMapping("/task")
+    public void deleteAll() {
+        System.out.println("Inside deleteAll");
+        repository.deleteAll();
+    }
 
     @GetMapping("/task")
     public List<Task> getAll() {
