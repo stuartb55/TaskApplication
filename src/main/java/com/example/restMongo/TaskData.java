@@ -32,8 +32,8 @@ public class TaskData {
 
     // Update Task
     public Task updateTask(Long id, String subject, String description, Date due, boolean important) {
-        for(Task tu : tasks) {
-            if(tu.getId().equals(id)) {
+        for (Task tu : tasks) {
+            if (tu.getId().equals(id)) {
                 tu.setSubject(subject);
                 tu.setDescription(description);
                 tu.setDue(due);
