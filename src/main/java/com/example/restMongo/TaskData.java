@@ -26,6 +26,8 @@ public class TaskData {
     // Create Task
     public Task createTask(Long id, String subject, String description, Date due, boolean important) {
         Task task = new Task(id, subject, description, due, important);
+        System.out.println(task);
+        System.out.println(repository);
         repository.insert(task);
         return task;
     }
