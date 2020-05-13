@@ -3,8 +3,10 @@ package com.example.restMongo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TaskData {
+    @Autowired
     private TaskRepository repository;
 
     private List<Task> tasks;
