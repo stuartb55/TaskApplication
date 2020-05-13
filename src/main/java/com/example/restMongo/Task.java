@@ -1,9 +1,10 @@
 package com.example.restMongo;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 public class Task {
-	private long id;
+	private ObjectId id;
 	private String subject;
 	private String description;
 	private Date created;
@@ -11,9 +12,12 @@ public class Task {
 	private Date due;
 	private boolean important;
 
-	public Task() { }
+	public Task() {
+	}
 
-	public Task(Long id, String subject, String description, Date due, boolean important) {
+	// Create a new Task
+	public Task(String subject, String description, Date due, boolean important) {
+		id = new ObjectId();
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
@@ -21,11 +25,22 @@ public class Task {
 		created = new Date();
 	}
 
-	public Long getId() {
+	// Already have the ID so populate it with the Updated Date
+	public Task(ObjectId id, String subject, String description, Date due, boolean important) {
+		this.id = id;
+		this.subject = subject;
+		this.description = description;
+		this.due = due;
+		this.important = important;
+		created = new Date();
+		updated = new Date();
+	}
+
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
@@ -80,14 +95,8 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task{" +
-                "id = " + id +
-                ", subject ='" + subject + '\'' +
-				", description ='" + description + '\'' +
-				", due ='" + due + '\'' +
-				", important ='" + important + '\'' +
-				", created ='" + created + '\'' +
-				", updated ='" + updated + '\'' +
-                '}';
+		return "Task{" + "id = " + id + ", subject ='" + subject + '\'' + ", description ='" + description + '\''
+				+ ", due ='" + due + '\'' + ", important ='" + important + '\'' + ", created ='" + created + '\''
+				+ ", updated ='" + updated + '\'' + '}';
 	}
 }
