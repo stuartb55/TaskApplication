@@ -22,17 +22,20 @@ public class TaskController {
 
     @GetMapping("/task")
     public List<Task> getAll() {
+        System.out.println("Inside getAll");
         return repository.findAll();
     }
 
     @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
+        System.out.println("Inside getTask");
         ObjectId taskId = new ObjectId(id);
         return repository.findById(taskId).orElse(null);
     }
 
     @PostMapping("/task")
     public Task create(@RequestBody Map<String, String> body) {
+        System.out.println("Inside create");
         String subject = body.get("subject");
         String description = body.get("description");
         Date due;
@@ -47,6 +50,7 @@ public class TaskController {
 
     @PutMapping("/task")
     public Task update(@RequestBody Map<String, String> body) {
+        System.out.println("Inside update");
         ObjectId id = new ObjectId(body.get("id"));
         String subject = body.get("subject");
         String description = body.get("description");
