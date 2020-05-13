@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Date;
 
 public class TaskData {
+    private TaskRepository repository;
+
     private List<Task> tasks;
 
     public TaskData() {
@@ -13,23 +15,18 @@ public class TaskData {
 
     // Return all tasks
     public List<Task> getTasks() {
-        return tasks;
+        return repository.findAll();
     }
 
     // Return Task by id
     public Task getTaskbyId(Long id) {
-        for(Task t : tasks) {
-            if(t.getId().equals(id)) {
-                return t;
-            }
-        }
-        return null;
+        return repository.findById(id).orElse(null);
     }
 
     // Create Task
     public Task createTask(Long id, String subject, String description, Date due, boolean important) {
         Task task = new Task(id, subject, description, due, important);
-        tasks.add(task);
+        repository.save(task);
         return task;
     }
 
