@@ -27,7 +27,7 @@ public class TaskController {
 
     @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
-        long taskId = Long.parseLong(id);
+        ObjectId taskId = new ObjectId(id);
         return repository.findById(taskId).orElse(null);
     }
 
