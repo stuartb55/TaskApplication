@@ -10,28 +10,28 @@ public class Task {
 	private String description;
 	private LocalDateTime created;
 	private LocalDateTime updated;
-	private LocalDateTime due;
+	private LocalDateTime dueDateTime;
 	private boolean important;
 
 	public Task() {
 	}
 
 	// Create new Task
-	public Task(String subject, String description, LocalDateTime due, boolean important) {
+	public Task(String subject, String description, LocalDateTime dueDateTime, boolean important) {
 		id = new ObjectId().toHexString();
 		this.subject = subject;
 		this.description = description;
-		this.due = due;
+		this.dueDateTime = dueDateTime;
 		this.important = important;
 		created = LocalDateTime.now();
 	}
 
 	// Already have the ID so populate it with the Updated Date
-	public Task(String id, String subject, String description, LocalDateTime due, boolean important) {
+	public Task(String id, String subject, String description, LocalDateTime dueDateTime, boolean important) {
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
-		this.due = due;
+		this.dueDateTime = dueDateTime;
 		this.important = important;
 		created = LocalDateTime.now();
 		updated = LocalDateTime.now();
@@ -77,12 +77,12 @@ public class Task {
 		this.updated = LocalDateTime.now();
 	}
 
-	public LocalDateTime getDue() {
-		return due;
+	public LocalDateTime getdueDateTime() {
+		return dueDateTime;
 	}
 
-	public void setDue(LocalDateTime due) {
-		this.due = due;
+	public void setdueDateTime(LocalDateTime dueDateTime) {
+		this.dueDateTime = dueDateTime;
 	}
 
 	public boolean isImportant() {
@@ -96,7 +96,7 @@ public class Task {
 	@Override
 	public String toString() {
 		return "Task{" + "id = " + id + ", subject ='" + subject + '\'' + ", description ='" + description + '\''
-				+ ", due ='" + due + '\'' + ", important ='" + important + '\'' + ", created ='" + created + '\''
+				+ ", dueDateTime ='" + dueDateTime + '\'' + ", important ='" + important + '\'' + ", created ='" + created + '\''
 				+ ", updated ='" + updated + '\'' + '}';
 	}
 }
