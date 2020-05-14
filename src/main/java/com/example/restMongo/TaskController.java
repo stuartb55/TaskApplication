@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
@@ -36,7 +35,7 @@ public class TaskController {
     @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
         System.out.println("Inside getTask");
-        ObjectId taskId = new ObjectId(id);
+        String taskId = getNextId();
         return repository.findById(taskId).orElse(null);
     }
 
@@ -52,13 +51,13 @@ public class TaskController {
             due = null;
         }
         Boolean important = Boolean.parseBoolean(body.get("important"));
-        return repository.save(new Task(subject, description, due, important));
+        return repository.save(new Task(getNextId(), subject, description, due, important));
     }
 
     @PutMapping("/task")
     public Task update(@RequestBody Map<String, String> body) {
         System.out.println("Inside update");
-        ObjectId id = new ObjectId(body.get("id").toString());
+        String id = body.get("id");
         String subject = body.get("subject");
         String description = body.get("description");
         Date due;
@@ -69,5 +68,14 @@ public class TaskController {
         }
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(id, subject, description, due, important));
+    }
+
+    private String getNextId() {
+        Task t = repository.findTopByOrderByIdDesc();
+        System.out.println(t);
+        System.out.println(t.getId());
+        int tid = Integer.parseInt(t.getId());
+        System.out.println(tid);
+        return Integer.toString(tid);
     }
 }
