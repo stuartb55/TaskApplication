@@ -50,7 +50,7 @@ public class TaskController {
     @PutMapping("/task")
     public Task update(@RequestBody Map<String, String> body) {
         System.out.println("Inside update");
-        ObjectId id = new ObjectId(body.get("id"));
+        String id = new ObjectId(body.get("id")).toHexString();
         String subject = body.get("subject");
         String description = body.get("description");
         Date due;

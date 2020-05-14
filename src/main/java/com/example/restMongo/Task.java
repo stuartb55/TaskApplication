@@ -4,7 +4,7 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 public class Task {
-	private ObjectId id;
+	private String id;
 	private String subject;
 	private String description;
 	private Date created;
@@ -16,7 +16,7 @@ public class Task {
 	}
 
 	public Task(String subject, String description, Date due, boolean important) {
-		id = new ObjectId();
+		id = new ObjectId().toHexString();
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
@@ -25,7 +25,7 @@ public class Task {
 	}
 
 	// Already have the ID so populate it with the Updated Date
-	public Task(ObjectId id, String subject, String description, Date due, boolean important) {
+	public Task(String id, String subject, String description, Date due, boolean important) {
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
@@ -35,11 +35,11 @@ public class Task {
 		updated = new Date();
 	}
 
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
