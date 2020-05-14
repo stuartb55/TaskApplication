@@ -1,10 +1,8 @@
 package com.example.restMongo;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,12 +35,7 @@ public class TaskController {
         System.out.println("Inside create");
         String subject = body.get("subject");
         String description = body.get("description");
-        Date due;
-        try {
-            due = new SimpleDateFormat("dd/MM/yyyy").parse(body.get("dueDate"));
-        } catch (ParseException e) {
-            due = null;
-        }
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(subject, description, due, important));
     }
@@ -53,12 +46,7 @@ public class TaskController {
         String id = new ObjectId(body.get("id")).toHexString();
         String subject = body.get("subject");
         String description = body.get("description");
-        Date due;
-        try {
-            due = new SimpleDateFormat().parse(body.get("dueDate"));
-        } catch (ParseException e) {
-            due = null;
-        }
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(id, subject, description, due, important));
     }

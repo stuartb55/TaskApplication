@@ -1,39 +1,39 @@
 package com.example.restMongo;
 
-import java.util.Date;
 import org.bson.types.ObjectId;
+import java.time.LocalDateTime;
 
 public class Task {
 	private String id;
 	private String subject;
 	private String description;
-	private Date created;
-	private Date updated;
-	private Date due;
+	private LocalDateTime created;
+	private LocalDateTime updated;
+	private LocalDateTime due;
 	private boolean important;
 
 	public Task() {
 	}
 
 	// Create new Task
-	public Task(String subject, String description, Date due, boolean important) {
+	public Task(String subject, String description, LocalDateTime due, boolean important) {
 		id = new ObjectId().toHexString();
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
 		this.important = important;
-		created = new Date();
+		created = LocalDateTime.now();
 	}
-	
+
 	// Already have the ID so populate it with the Updated Date
-	public Task(String id, String subject, String description, Date due, boolean important) {
+	public Task(String id, String subject, String description, LocalDateTime due, boolean important) {
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
 		this.important = important;
-		created = new Date();
-		updated = new Date();
+		created = LocalDateTime.now();
+		updated = LocalDateTime.now();
 	}
 
 	public String getId() {
@@ -60,27 +60,27 @@ public class Task {
 		this.description = description;
 	}
 
-	public Date getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public Date getUpdated() {
+	public LocalDateTime getUpdated() {
 		return updated;
 	}
 
 	public void setUpdated() {
-		this.updated = new Date();
+		this.updated = LocalDateTime.now();
 	}
 
-	public Date getDue() {
+	public LocalDateTime getDue() {
 		return due;
 	}
 
-	public void setDue(Date due) {
+	public void setDue(LocalDateTime due) {
 		this.due = due;
 	}
 
@@ -90,7 +90,6 @@ public class Task {
 
 	public void setImportant(boolean important) {
 		this.important = important;
-		updated = new Date();
 	}
 
 	@Override
