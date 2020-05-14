@@ -1,39 +1,41 @@
 package com.example.restMongo;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import org.bson.types.ObjectId;
-import java.time.LocalDateTime;
 
 public class Task {
 	private String id;
 	private String subject;
 	private String description;
-	private LocalDateTime created;
-	private LocalDateTime updated;
-	private LocalDateTime due;
+	private ZonedDateTime created;
+	private ZonedDateTime updated;
+	private ZonedDateTime due;
 	private boolean important;
 
 	public Task() {
 	}
 
 	// Create new Task
-	public Task(String subject, String description, LocalDateTime due, boolean important) {
+	public Task(String subject, String description, ZonedDateTime due, boolean important) {
 		id = new ObjectId().toHexString();
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
 		this.important = important;
-		created = LocalDateTime.now();
+		created = ZonedDateTime.now(ZoneId.of("UTC"));
 	}
 
 	// Already have the ID so populate it with the Updated Date
-	public Task(String id, String subject, String description, LocalDateTime due, boolean important) {
+	public Task(String id, String subject, String description, ZonedDateTime due, boolean important) {
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
 		this.due = due;
 		this.important = important;
-		created = LocalDateTime.now();
-		updated = LocalDateTime.now();
+		created = ZonedDateTime.now(ZoneId.of("UTC"));
+		updated = ZonedDateTime.now(ZoneId.of("UTC"));
 	}
 
 	public String getId() {
@@ -60,27 +62,27 @@ public class Task {
 		this.description = description;
 	}
 
-	public LocalDateTime getCreated() {
+	public ZonedDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDateTime created) {
+	public void setCreated(ZonedDateTime created) {
 		this.created = created;
 	}
 
-	public LocalDateTime getUpdated() {
+	public ZonedDateTime getUpdated() {
 		return updated;
 	}
 
 	public void setUpdated() {
-		this.updated = LocalDateTime.now();
+		this.updated = ZonedDateTime.now();
 	}
 
-	public LocalDateTime getDue() {
+	public ZonedDateTime getDue() {
 		return due;
 	}
 
-	public void setDue(LocalDateTime due) {
+	public void setDue(ZonedDateTime due) {
 		this.due = due;
 	}
 
