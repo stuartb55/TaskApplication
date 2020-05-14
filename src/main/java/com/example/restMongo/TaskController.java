@@ -2,7 +2,7 @@ package com.example.restMongo;
 
 import java.util.List;
 import java.util.Map;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +35,7 @@ public class TaskController {
         System.out.println("Inside create");
         String subject = body.get("subject");
         String description = body.get("description");
-        ZonedDateTime due = ZonedDateTime.parse(body.get("dueDate"));
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(subject, description, due, important));
     }
@@ -46,7 +46,7 @@ public class TaskController {
         String id = new ObjectId(body.get("id")).toHexString();
         String subject = body.get("subject");
         String description = body.get("description");
-        ZonedDateTime due = ZonedDateTime.parse(body.get("dueDate"));
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(id, subject, description, due, important));
     }
