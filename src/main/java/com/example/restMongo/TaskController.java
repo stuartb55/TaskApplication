@@ -55,7 +55,7 @@ public class TaskController {
         String description = body.get("description");
         Date due;
         try {
-            due = new SimpleDateFormat("dd/MM/yyyy").parse(body.get("dueDate"));
+            due = new SimpleDateFormat().parse(body.get("dueDate"));
         } catch (ParseException e) {
             due = null;
         }
