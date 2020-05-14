@@ -15,6 +15,7 @@ public class Task {
 	public Task() {
 	}
 
+	// Create new Task
 	public Task(String subject, String description, Date due, boolean important) {
 		id = new ObjectId().toHexString();
 		this.subject = subject;
@@ -23,7 +24,7 @@ public class Task {
 		this.important = important;
 		created = new Date();
 	}
-
+	
 	// Already have the ID so populate it with the Updated Date
 	public Task(String id, String subject, String description, Date due, boolean important) {
 		this.id = id;
