@@ -35,7 +35,7 @@ public class TaskController {
         System.out.println("Inside create");
         String subject = body.get("subject");
         String description = body.get("description");
-        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDateTime"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(subject, description, due, important));
     }
@@ -46,7 +46,7 @@ public class TaskController {
         String id = new ObjectId(body.get("id")).toHexString();
         String subject = body.get("subject");
         String description = body.get("description");
-        LocalDateTime due = LocalDateTime.parse(body.get("dueDate"));
+        LocalDateTime due = LocalDateTime.parse(body.get("dueDateTime"));
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(id, subject, description, due, important));
     }
