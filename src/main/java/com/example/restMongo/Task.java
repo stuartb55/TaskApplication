@@ -1,9 +1,10 @@
 package com.example.restMongo;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 public class Task {
-	private String id;
+	private ObjectId id;
 	private String subject;
 	private String description;
 	private Date created;
@@ -14,7 +15,17 @@ public class Task {
 	public Task() {
 	}
 
-	public Task(String id, String subject, String description, Date due, boolean important) {
+	public Task(String subject, String description, Date due, boolean important) {
+		id = new ObjectId();
+		this.subject = subject;
+		this.description = description;
+		this.due = due;
+		this.important = important;
+		created = new Date();
+	}
+
+	// Already have the ID so populate it with the Updated Date
+	public Task(ObjectId id, String subject, String description, Date due, boolean important) {
 		this.id = id;
 		this.subject = subject;
 		this.description = description;
@@ -24,11 +35,11 @@ public class Task {
 		updated = new Date();
 	}
 
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
