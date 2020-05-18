@@ -28,7 +28,7 @@ public class Task {
 
 	// Already have the ID so populate it with the Updated Date
 	public Task(String id, String subject, String description, LocalDateTime dueDateTime, boolean important) {
-		this.id = id;
+		this.id = new ObjectId(id).toHexString();
 		this.subject = subject;
 		this.description = description;
 		this.dueDateTime = dueDateTime;
