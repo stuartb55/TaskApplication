@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @CrossOrigin()
@@ -45,7 +44,7 @@ public class TaskController {
     @PutMapping("/task")
     public Task update(@RequestBody Map<String, String> body) {
         System.out.println("Inside update");
-        String id = new ObjectId(body.get("id")).toHexString();
+        String id = body.get("id");
         String subject = body.get("subject");
         String description = body.get("description");
         LocalDateTime due = LocalDateTime.parse(body.get("dueDateTime"));
