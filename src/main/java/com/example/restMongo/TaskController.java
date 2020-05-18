@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@CrossOrigin(origins = "http://java.bolton.cloud:3000", maxAge = 3600)
+@CrossOrigin()
 @RestController
 public class TaskController {
     @Autowired
