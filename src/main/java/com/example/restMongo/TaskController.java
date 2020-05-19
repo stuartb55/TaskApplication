@@ -28,9 +28,17 @@ public class TaskController {
     }
 
     @GetMapping("/task")
-    public Page<Task> getAll() {
+    public List<Task> getAll() {
         System.out.println("Inside getAll");
-        return repository.findAll(PageRequest.of(0, 3));
+        return repository.findAll();
+    }
+
+    @GetMapping("/task/paged")
+    public Page<Task> getPagedTasks(@RequestBody Map<String, String> body) {
+        System.out.println("Inside getPagedTasks");
+        int pageNumber = Integer.parseInt(body.get("pageNumber"));
+        int pageSize = Integer.parseInt(body.get("pageSize"));
+        return repository.findAll(PageRequest.of(pageNumber, pageSize));
     }
 
     @PostMapping("/task")
