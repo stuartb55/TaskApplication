@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 @CrossOrigin()
 @RestController
@@ -26,9 +28,9 @@ public class TaskController {
     }
 
     @GetMapping("/task")
-    public List<Task> getAll() {
+    public Page<Task> getAll() {
         System.out.println("Inside getAll");
-        return repository.findAll();
+        return repository.findAll(PageRequest.of(0, 3));
     }
 
     @PostMapping("/task")
