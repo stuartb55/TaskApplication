@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 
 @CrossOrigin()
 @RestController
@@ -37,7 +39,8 @@ public class TaskController {
     @GetMapping("/task/paged")
     public Page<Task> getPagedTasks(@RequestParam int pageNumber, @RequestParam int pageSize) {
         System.out.println("Inside getPagedTasks");
-        return repository.findAll(PageRequest.of(pageNumber, pageSize));
+        return repository.findAll(
+                PageRequest.of(pageNumber, pageSize, Sort.by(Order.asc("dueDateTime"), Order.desc("created"))));
     }
 
     @PostMapping("/task")
