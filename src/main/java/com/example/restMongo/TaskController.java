@@ -51,4 +51,25 @@ public class TaskController {
         Boolean important = Boolean.parseBoolean(body.get("important"));
         return repository.save(new Task(id, subject, description, due, important));
     }
+
+    @GetMapping("/task/subject")
+    public List<Task> findBySubject(@RequestBody Map<String, String> body) {
+        System.out.println("Inside findBySubject");
+        String subject = body.get("subject");
+        return repository.findBySubject(subject);
+    }
+
+    @GetMapping("/task/description")
+    public List<Task> findByDescription(@RequestBody Map<String, String> body) {
+        System.out.println("Inside findByDescription");
+        String description = body.get("description");
+        return repository.findByDescription(description);
+    }
+
+    @GetMapping("/task/important")
+    public List<Task> findByImportant(@RequestBody Map<String, String> body) {
+        System.out.println("Inside findByImportant");
+        Boolean important = Boolean.parseBoolean(body.get("important"));
+        return repository.findByImportant(important);
+    }
 }
