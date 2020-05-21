@@ -24,7 +24,7 @@ public class AppConfig {
 
     public @Bean MongoClient mongoClient() {
         return MongoClients.create(MongoClientSettings.builder()
-                .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress("localhost", 27017))))
+                .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress("java.bolton.cloud", 27017))))
                 .credential(credential).applyToSslSettings(builder -> builder.enabled(true)).build());
     }
 
