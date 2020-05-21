@@ -18,14 +18,14 @@ public class AppConfig {
 
     String user = "javaServiceAccount"; // the user name
     String source = "test"; // the source where the user is defined
-    char[] password = { 'W','S','6','Q','e','8','\\','?','j',']','6','H','+','N','&','H' }; ; // the password as a character array
+    char[] password = { 'W', 'S', '6', 'Q', 'e', '8', '\\', '?', 'j', ']', '6', 'H', '+', 'N', '&', 'H' };
 
     MongoCredential credential = MongoCredential.createScramSha256Credential(user, source, password);
 
     public @Bean MongoClient mongoClient() {
         return MongoClients.create(MongoClientSettings.builder()
                 .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress("localhost", 27017))))
-                .credential(credential).build());
+                .credential(credential).applyToSslSettings(builder -> builder.enabled(true)).build());
     }
 
     public @Bean MongoTemplate mongoTemplate() {
