@@ -24,8 +24,9 @@ public class AppConfig {
 
     public @Bean MongoClient mongoClient() {
         return MongoClients.create(MongoClientSettings.builder()
-                .applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress("85.159.212.173", 27017))))
-                .credential(credential).applyToSslSettings(builder -> builder.enabled(true)).build());
+                .applyToClusterSettings(
+                        builder -> builder.hosts(Arrays.asList(new ServerAddress("85.159.212.173", 27017))))
+                .credential(credential).build());
     }
 
     public @Bean MongoTemplate mongoTemplate() {
